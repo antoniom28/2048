@@ -1,5 +1,5 @@
 export const movementLeft = {
-    moveLeft(sposta, spostamenti, newPos, originalArray) {
+    moveLeft(sposta, spostamenti, newPos, score, originalArray) {
         
         let antiLoop = 0;
         sposta = false;
@@ -49,6 +49,7 @@ export const movementLeft = {
               newPos[row][col] != 0
             ) {
               newPos[row][col] *= 2;
+              score += newPos[row][col];
               spostamenti = true;
               for (
                 let colIndex = col + 1;
@@ -63,6 +64,6 @@ export const movementLeft = {
           }
         }
         originalArray = newPos;
-        return [sposta, spostamenti, newPos];
+        return [sposta, spostamenti, newPos, score];
     },
 }

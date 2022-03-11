@@ -1,5 +1,5 @@
 export const movementUp = {
-    moveUp(sposta, spostamenti, newPos, originalArray) {
+    moveUp(sposta, spostamenti, newPos, score, originalArray) {
         let antiLoop = 0;
         sposta = false;
         for (let col = 0; col < newPos.length; col++) {
@@ -51,6 +51,7 @@ export const movementUp = {
                     newPos[row][col] != 0
                 ) {
                     newPos[row][col] *= 2;
+                    score += newPos[row][col];
                     spostamenti = true;
                     for (
                         let rowIndex = row + 1;
@@ -65,6 +66,6 @@ export const movementUp = {
             }
         }
         originalArray = newPos;
-        return [sposta, spostamenti, newPos];
+        return [sposta, spostamenti, newPos, score];
     },
 }

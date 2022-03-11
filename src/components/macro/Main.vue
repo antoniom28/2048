@@ -1,6 +1,9 @@
 
         <template>
   <main class="container">
+
+    <scoreBox :score="score"/>
+
     <div class="box">
       <div v-if="resetGame" class="reset-game"></div>
       <div
@@ -16,6 +19,7 @@
 </template>
 
 <script>
+import scoreBox from "../common/scoreBox.vue";
 import {startGame} from "../../assets/js/startGame.js";
 import {addNumber} from "../../assets/js/addNumber.js";
 import {movementUp} from "../../assets/js/movementUp.js";
@@ -26,6 +30,7 @@ import {movementRight} from "../../assets/js/movementRight.js";
 export default {
   data() {
     return {
+      score: 0,
       boxValue: [
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -36,6 +41,7 @@ export default {
   },
   name: "Main",
   components:{
+    scoreBox,
   },
   props: {
     restart: Boolean,
@@ -74,20 +80,21 @@ export default {
         let spostamenti = false;
         let getUpdate = [sposta,spostamenti,newPos];
           if (event.key == "w") 
-            getUpdate = movementUp.moveUp(sposta , spostamenti , newPos , this.boxValue);
+            getUpdate = movementUp.moveUp(sposta , spostamenti , newPos , this.score , this.boxValue);
 
           if (event.key == "s") 
-            getUpdate = movementDown.moveDown(sposta , spostamenti , newPos , this.boxValue);
+            getUpdate = movementDown.moveDown(sposta , spostamenti , newPos , this.score , this.boxValue);
 
           if (event.key == "a") 
-            getUpdate = movementLeft.moveLeft(sposta , spostamenti , newPos , this.boxValue);
+            getUpdate = movementLeft.moveLeft(sposta , spostamenti , newPos , this.score , this.boxValue);
 
           if (event.key == "d") 
-            getUpdate = movementRight.moveRight(sposta , spostamenti , newPos , this.boxValue);
+            getUpdate = movementRight.moveRight(sposta , spostamenti , newPos , this.score , this.boxValue );
 
           sposta = getUpdate[0];
           spostamenti = getUpdate[1];
           this.boxValue = newPos = getUpdate[2];
+          this.score = getUpdate[3];
 
           if (spostamenti)
             addNumber.newNumber(this.boxValue);

@@ -31,6 +31,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/style/partials/variables.scss';
+.container{
+    text-align: center;
+    padding: 20px 0;
+}
 h1{
     cursor: pointer;
     display: inline-block;
