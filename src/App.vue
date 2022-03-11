@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header @newGame = "newGame()"/>
+
+    <Main :restart = "restart"/>
+
+   <!-- <Footer /> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+//import axios from "axios";
+import Main from "./components/macro/Main.vue";
+import Footer from "./components/macro/Footer.vue";
+import Header from "./components/macro/Header.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      inputText: "a caso",
+      restart: false,
+    };
+  },
+  methods: {
+      newGame(){
+        this.restart = true;
+        setTimeout(() => {
+          this.restart = false;
+        }, 0);
+      },
+  },
   components: {
-    HelloWorld
-  }
-}
+    Main,
+    Footer,
+    Header,
+  },
+};
 </script>
 
 <style lang="scss">
+@import "./assets/style/globals.scss";
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

@@ -1,0 +1,11 @@
+gli import/export sono già tutti scritti
+ma commentati:
+- axios in app.vue //scelto a caso
+- bootstrap in globals.scss
+- fontawesome in main.js
+
+da installare: //i or install
+- npm i bootstrap 
+- npm install axios
+- npm install --save-dev @fortawesome/fontawesome-free
+npm install raw-loader --save-dev
